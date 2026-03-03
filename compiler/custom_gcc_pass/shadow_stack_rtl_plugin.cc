@@ -104,7 +104,7 @@ static unsigned int shadowstack_rtl_exec()
     const char *push_asm = ".insn r 0x0b, 0, 0x01, x0, x0, x0";
     const char *pop_asm  = ".insn r 0x0b, 0, 0x02, x0, x0, x0";
 
-    // 1) PUSH at function entry (so it actually executes before any nested call clobbers x1)
+    // 1) PUSH at function entry 
     if (rtx_insn *entry = first_real_insn()) {
         rtx push = make_basic_asm_operands(push_asm);
         emit_insn_before(push, entry);
@@ -142,7 +142,7 @@ struct shadowstack_rtl_pass : rtl_opt_pass {
     unsigned int execute(function *) override { return shadowstack_rtl_exec(); }
 };
 
-} // namespace
+} 
 
 int plugin_init(struct plugin_name_args *plugin_info,
                 struct plugin_gcc_version *version)
